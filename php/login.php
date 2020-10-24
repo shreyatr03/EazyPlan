@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("config.php");
+include("../connection/config.php");
 
 if(isset($_POST['username']))
 {
@@ -34,7 +34,7 @@ if(isset($_POST['username']))
         }  
         else
         {  
-            echo "<center><h3 style='color:red;'><i>Login failed. Invalid username or password.</i></h3></center>";  
+            echo "<center><h2 style='color:red;'><i>Login failed. Invalid username or password.</i></h2></center>";  
         } 
     }
 }    
@@ -53,7 +53,7 @@ if(isset($_POST['username']))
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
 
     <!-- CSS Style Sheets -->
-    <link rel="stylesheet" href="./login.css">
+    <link rel="stylesheet" href="../css/login.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
     <!-- Bootstrap Links -->

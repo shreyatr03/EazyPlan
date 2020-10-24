@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<?php session_start(); ?>
+
 <html lang="en">
 	<head>
 		<!-- Required meta tags -->
@@ -12,13 +12,39 @@
 		<!--TILL HERE-->
 
 		<!-- CSS FOR BOOTSTRAP-->
-		<link rel="stylesheet" href="./homepagestaff.css">
+		<link rel="stylesheet" href="../css/homepagestaff.css">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 		
 		<!-- My Stylesheet-->
 		<link rel="stylesheet" type="text/css" href="#" type="text/css">
+
+		<!-- AJAX -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		
+		<!-- JAVASCRIPT FOR BOOTSTRAP -->
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+		<script type="text/javascript">
+		function loadResource(){
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (xhttp.readyState == 4 && xhttp.status == 200) {
+				document.getElementById("content").innerHTML = xhttp.responseText;
+				}
+			};
+			xhttp.open("GET", "resource.php", true);
+			xhttp.send();
+		}
+		</script>
+
 	
 	</head>
+<?php 
+session_start(); 
+if(isset($_SESSION["name"])){
+?>
 	<body>
         <nav class="navbar navbar-expand-lg navbar-light navcolor" style="z-index: 1;">
             <span class="sideNavButton" onclick="openNav()">&#9776;</span>&nbsp;&nbsp;
@@ -39,7 +65,7 @@
 				</form> -->
 			  <ul class="navbar-nav ml-auto">
 				<li class="nav-item ">
-				  <a class="nav-link" href="#">Home</a>
+				  <a class="nav-link" href="./homepagestaff.php">Home</a>
 				</li>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -50,7 +76,7 @@
 					</div>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">
+					<a class="nav-link" href="./logout.php">
 						<span class="fas fa-power-off" aria-hidden="true"></span>&nbsp;Logout</a>
 				</li>
 			  </ul>
@@ -67,11 +93,11 @@
 			<a href="#">Work Update</a>
 			<a href="#">Pending Orders</a>
 		</div>
-		
-		<div class="body-content">
+
+		<div class="body-content" id="content">
 			<div class="card-deck">
 
-				<div class="card">
+				<div class="card" onclick="loadResource()" id="resource">
 					<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSkLB9PFPhs0X2MxKej62wtmbTSj7x4BS88pRM57WHULnvtUm57G1tJJ2zvLeSpLnZvRHeZtqtqdvdbeo9oZCYzEj2HbIwOzTFWsQ&usqp=CAU&ec=45699845" class="card-img-top" alt="...">
 					<div class="card-body">
 						<h5 class="card-title">All Resources</h5>
@@ -108,12 +134,14 @@
             document.getElementById("mySidenav").style.width = "0";
         }
         </script>
-	<!-- JAVASCRIPT FOR BOOTSTRAP -->
-	
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 	
 </body>
+<?php 
+	}
+else{
+echo "<h3 style='color:red'>Login to access the page...</h3>";
+echo "<a href='./login.php'>Click here to login</a>";
+}
+?>
 
 </html>
