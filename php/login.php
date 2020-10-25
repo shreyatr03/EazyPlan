@@ -28,6 +28,7 @@ if(isset($_POST['username']))
         {  
             $_SESSION["name"]=$row["name"];
             $_SESSION["email"]=$row["email"];
+            $_SESSION["role"]=$row["role"];
             if($row['role']=='staff'){
                 header("location: homepagestaff.php");
             }
