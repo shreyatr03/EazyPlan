@@ -11,6 +11,10 @@
     border-left:1px solid darkblue;
 }
 
+.col-md-2{
+    border-left:1px solid darkblue;
+}
+
 #heading{
     background-color: rgb(252, 213, 206);
     border-bottom:1px solid darkblue;

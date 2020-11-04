@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light navcolor" style="z-index: 1;">
     <span class="sideNavButton" onclick="openNav()">&#9776;</span>&nbsp;&nbsp;
-    <a class=" brand" href="#">EazyPlan</a>
+    <a class=" brand" href="./homepagestaff.php">EazyPlan</a>
     
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -37,7 +37,7 @@
     <a href="javascript:void(0)" class="closebtn" onclick="closeSideNav()">&times;</a>
     <a href="resource.php">All Resources</a>
     <a href="viewallocatedresource.php">Allocated Resources</a>
-    <a href="#">Resource Requests</a>
+    <a href="resourceRequest.php">Resource Requests</a>
     <a href="#">Work Update</a>
     <a href="#">Pending Orders</a>
 </div>
