@@ -13,7 +13,7 @@
         ?>
 
         <div class="container">
-            <br><h2>All Resources</h2><br>
+        <br><h2>All Resources</h2><br>
             <div class="row" id="heading">
                 <div class="col-md-3" id="val" >ID</div>
                 <div class="col-md-3" id="val" >Name</div>
@@ -23,7 +23,7 @@
 
             <?php
                 include("../connection/config.php");
-                $sql = "select * from resource";
+                $sql = "select * from resource"; 
                 $resources = mysqli_query($db, $sql);
                 foreach($resources as $resource)
                     {
@@ -41,6 +41,7 @@
             ?>
 
         </div>
+
     </body>
 
     <?php

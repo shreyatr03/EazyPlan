@@ -26,6 +26,7 @@ if(isset($_POST['username']))
         
         if($count == 1)
         {  
+            $_SESSION["userId"]=$row["userid"];
             $_SESSION["name"]=$row["name"];
             $_SESSION["email"]=$row["email"];
             $_SESSION["role"]=$row["role"];
@@ -89,8 +90,8 @@ if(isset($_POST['username']))
                     <br>
 
                     <label for="pass">Password<span style="color:rgb(255, 118, 113);">*</span></label>
-                    <input name="password" type="password" placeholder="enter password">
-                    <br>
+                    <input name="password" type="password" placeholder="Enter password">
+                    <br><br>
 
                     <button class="btn btn-info" value="Submit" type="submit"> Login </button>
 
