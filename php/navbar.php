@@ -62,8 +62,8 @@
     <a href="resource.php">All Resources</a>
     <a href="viewallocatedresource.php">Allocated Resources</a>
     <a href="resourceRequest.php">Resource Requests</a>
-    <a href="#">Work Update</a>
-    <a href="#">Pending Orders</a>
+    <a href="workupdate.php">Work Update</a>
+    <a href="pendingorder.php">Pending Orders</a>
 </div>
 <?php
  }

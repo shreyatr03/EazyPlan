@@ -2,7 +2,8 @@
 
 <html lang="en">
 	<?php
-        session_start();
+		session_start();
+		$title = "EazyPlan";             // This is the title of a page
         include("../php/headLinks.php");
         if(isset($_SESSION["name"]) && ($_SESSION["role"]=='staff')){
     ?>
