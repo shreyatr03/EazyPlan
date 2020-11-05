@@ -1,3 +1,3 @@
 # EazyPlanPhp
 ERP
- Enterprose Resource Planning
+ Enterprise Resource Planning

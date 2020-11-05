@@ -72,11 +72,11 @@
 
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeSideNav()">&times;</a>
-    <a href="#">Your Resources</a>
+    <a href="workerResource.php">Your Resources</a>
     <a href="#">Request Resource</a>
     <a href="#">All Requests</a>
     <a href="#">Update Work Progress</a>
-    <a href="#">Pending Work</a>
+    <a href="pendingorder.php">Pending Work</a>
 </div>
 
 <?php

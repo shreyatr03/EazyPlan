@@ -5,7 +5,7 @@
         session_start();
         $title = "Requests";                       // This is the title of a page
         include("../php/headLinks.php");
-        if(isset($_SESSION["name"]) && ($_SESSION["role"]=='staff')){
+        if(isset($_SESSION["name"])){ // && ($_SESSION["role"]=='staff')
     ?>
 
     <body>
@@ -14,7 +14,7 @@
         ?>
 
         <div class="container">
-        <br><h2>Resource Requests</h2><br>
+        <br><h2>Pending Orders</h2><br>
             <div class="row" id="heading">
                 <div class="col-md-1" id="val" >OrderID</div>
                 <div class="col-md-2" id="val" >Name</div>

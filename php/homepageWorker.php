@@ -158,7 +158,7 @@
 
 		<div class="body-content">
 			<div class="card-deck">
-				<div class="card">
+				<div class="card"  style="cursor: pointer;" onclick="window.location='workerResource.php';">
 				<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSkLB9PFPhs0X2MxKej62wtmbTSj7x4BS88pRM57WHULnvtUm57G1tJJ2zvLeSpLnZvRHeZtqtqdvdbeo9oZCYzEj2HbIwOzTFWsQ&usqp=CAU&ec=45699845" class="card-img-top" alt="...">
 				<div class="card-body">
 					<h5 class="card-title">Available Resources</h5>
