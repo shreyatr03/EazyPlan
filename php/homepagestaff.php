@@ -44,16 +44,7 @@
 
 			</div>
 		</div>
-	<script>
-		function openNav() {
-			document.getElementById("mySidenav").style.width = "290px";
-		}
-
-		function closeSideNav() {
-			document.getElementById("mySidenav").style.width = "0";
-		}
-	</script>
-		
+	
 </body>
 <?php 
 	}

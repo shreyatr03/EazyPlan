@@ -33,6 +33,9 @@ if(isset($_POST['username']))
             if($row['role']=='staff'){
                 header("location: homepagestaff.php");
             }
+            else if($row['role']=='worker'){
+                header("location: homepageworker.php");
+            }
         }  
         else
         {  
