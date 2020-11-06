@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 05, 2020 at 06:14 PM
+-- Generation Time: Nov 06, 2020 at 06:32 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.9
 
@@ -41,7 +41,8 @@ CREATE TABLE `account` (
 
 INSERT INTO `account` (`userid`, `name`, `email`, `role`, `password`) VALUES
 (1, 'Shreya', 'shreya@gmail.com', 'staff', 'hellohello123'),
-(2, 'Hariharan', 'hariharan@gmail.com', 'worker', 'hellohello123');
+(2, 'Hariharan', 'hariharan@gmail.com', 'worker', 'hellohello123'),
+(3, 'Arun', 'arun@gmail.com', 'worker', 'hellohello123');
 
 -- --------------------------------------------------------
 
@@ -89,7 +90,8 @@ CREATE TABLE `allorder` (
 --
 
 INSERT INTO `allorder` (`orderID`, `name`, `description`, `quantity`, `orderDate`, `completionDate`, `status`, `totalEstimatedAmt`, `advanceAmt`, `amtLeft`) VALUES
-(1, 'APS Computer', '100 computers to be delivered to APS Techs, order accepted on 5-11-2020.', 100, '2020-11-05', '2020-11-25', 'Not Delivered', 3800000, 1800000, 2000000);
+(1, 'APS Computer', '100 computers to be delivered to APS Techs, order accepted on 5-11-2020.', 100, '2020-11-05', '2020-11-25', 'Not Delivered', 3800000, 1800000, 2000000),
+(2, 'MTV Home Appliances', 'Require 350 air conditioners.', 350, '2020-11-07', '2020-11-30', 'Not Delivered', 3500000, 1000000, 2500000);
 
 -- --------------------------------------------------------
 
@@ -108,7 +110,8 @@ CREATE TABLE `pendingorder` (
 --
 
 INSERT INTO `pendingorder` (`orderID`, `CompletedProdQTY`, `lastUpdated`) VALUES
-(1, 20, '2020-11-05');
+(1, 20, '2020-11-05'),
+(2, 0, '2020-11-06');
 
 -- --------------------------------------------------------
 
@@ -178,15 +181,16 @@ CREATE TABLE `workerworkupdate` (
   `workerID` int(10) NOT NULL,
   `orderID` int(10) NOT NULL,
   `productQTY` int(30) NOT NULL,
-  `updateTime` date NOT NULL
+  `updateTime` date NOT NULL DEFAULT current_timestamp(),
+  `AllocID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `workerworkupdate`
 --
 
-INSERT INTO `workerworkupdate` (`workerID`, `orderID`, `productQTY`, `updateTime`) VALUES
-(2, 1, 20, '2020-11-05');
+INSERT INTO `workerworkupdate` (`workerID`, `orderID`, `productQTY`, `updateTime`, `AllocID`) VALUES
+(2, 1, 10, '2020-11-05', 1);
 
 --
 -- Indexes for dumped tables
@@ -244,7 +248,8 @@ ALTER TABLE `totalworkupdate`
 --
 ALTER TABLE `workerworkupdate`
   ADD PRIMARY KEY (`orderID`,`workerID`),
-  ADD KEY `account_workerworkupdate` (`workerID`);
+  ADD KEY `account_workerworkupdate` (`workerID`),
+  ADD KEY `wallocid_fk` (`AllocID`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -293,7 +298,8 @@ ALTER TABLE `totalworkupdate`
 --
 ALTER TABLE `workerworkupdate`
   ADD CONSTRAINT `account_workerworkupdate` FOREIGN KEY (`workerID`) REFERENCES `account` (`userid`),
-  ADD CONSTRAINT `allorder_workerworkupdate` FOREIGN KEY (`orderID`) REFERENCES `allorder` (`orderID`);
+  ADD CONSTRAINT `allorder_workerworkupdate` FOREIGN KEY (`orderID`) REFERENCES `allorder` (`orderID`),
+  ADD CONSTRAINT `wallocid_fk` FOREIGN KEY (`AllocID`) REFERENCES `workallocation` (`AllocID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
