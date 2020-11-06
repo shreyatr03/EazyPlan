@@ -16,12 +16,13 @@
         <div class="container">
         <br><h2>Pending Work</h2><br>
             <div class="row" id="heading">
-                <div class="col-md-2" id="val" >OrderID</div>
-                <div class="col-md-2" id="val" >Name</div>
+                <!-- <div class="col-md-1" id="val" >OrderID</div> -->
+                <div class="col-md-3" id="val" >Id : Order Name</div>
                 <div class="col-md-2" id="val" >Alloted</div>
                 <div class="col-md-2" id="val" >Finished</div>
                 <div class="col-md-2" id="val" >Pending</div>
                 <div class="col-md-2" id="val" >Complete By</div>
+                <div class="col-md-1" id="val" >Update</div>
             </div>
 
             <?php
@@ -40,12 +41,12 @@
             ?>
 
             <div class="row" id="item">
-                <div class="col-md-2" id="val" ><?php echo $request['orderID']; ?></div>
-                <div class="col-md-2" id="val" ><?php echo $request['oname']; ?></div>
+                <div class="col-md-3" id="val" ><?php echo $request['orderID']." : ".$request['oname']; ?></div>
                 <div class="col-md-2" id="val" ><?php echo $request['Quantity']; ?></div>
                 <div class="col-md-2" id="val" ><?php echo $completed; ?></div>
                 <div class="col-md-2" id="val" ><?php echo $request['Quantity'] - $completed; ?></div>
                 <div class="col-md-2" id="val" ><?php echo $request['CompleteBy']; ?></div>
+                <div class="col-md-1" id="val" ><span class="fas fa-edit" aria-hidden="true" style="cursor:pointer;" onclick="updateWork(<?php echo $allocid; ?>);"></span></div>
             </div>
 
             <?php
@@ -55,7 +56,29 @@
         </div>
 
     </body>
-
+    <script>
+        function updateWork(n){
+            var qty = prompt("Enter quantity");
+            if(qty>0)
+            $.ajax({
+                    type: "POST",
+                    url: "updateWork.php",
+                    dataType: "text",
+                    data: {
+                    allocid: n,
+                    quantity: qty
+                    },
+                    success: function(data) {
+                        if(data==='yes')
+                            window.location.reload();
+                        else
+                            alert("Couldn't Complete your request "+data);
+                    },
+                    cache: false,
+            });
+            }
+    </script>
+    </script>
     <?php
         }
     else{

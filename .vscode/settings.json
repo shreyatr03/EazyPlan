@@ -1,6 +1,7 @@
 {
     "cSpell.words": [
         "allocatedresources",
+        "allocid",
         "allorder",
         "closebtn",
         "homepagestaff",
@@ -8,6 +9,9 @@
         "maxdates",
         "nextorder",
         "pendingorder",
+        "reqid",
+        "resourcerq",
+        "staffid",
         "userid",
         "workerid"
     ]

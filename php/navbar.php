@@ -76,7 +76,7 @@
     <a href="workerResource.php">Your Resources</a>
     <a href="requestResource.php">Request Resource</a>
     <a href="#">All Requests</a>
-    <a href="#">Update Work Progress</a>
+    <a href="updateWork.php">Update Work Progress</a>
     <a href="pendingwork.php">Pending Work</a>
 </div>
 
