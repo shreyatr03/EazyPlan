@@ -6,24 +6,7 @@
         include("../php/headLinks.php");
         if(isset($_SESSION["name"]) && ($_SESSION["role"]=='worker')){
     ?>
-	<!-- <head>
-		<!-- Required meta tags 
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Dashboard</title>
-        	
-		<!-- TO GET GLYPH ICONS
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-		<!--TILL HERE
 
-		<!-- CSS FOR BOOTSTRAP
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-		
-
-		<!-- My Stylesheet
-		<link rel="stylesheet" type="text/css" href="#" type="text/css"> -->
-	
-	
 		<style>
             body{
                 background-color: #EAF4FF;
@@ -164,7 +147,18 @@
 					<h5 class="card-title">Available Resources</h5>
 					<p class="card-text">Total Resources available with you.</p>
 				</div>
-				<div class="card-footer"><small class="text-muted">Resource Allocated on 31-08-2020</small></div>
+				<?php
+					include("../connection/config.php");
+					$workerid = $_SESSION['userId'];
+					$sql = "select max(AllocDate) as date FROM allocatedresources WHERE workerID = $workerid";
+					$maxdates = mysqli_query($db, $sql);
+					foreach($maxdates as $maxdate)
+					{
+				?>
+				<div class="card-footer"><small class="text-muted">Last Resource Allocation on <?php echo $maxdate['date']; ?></small></div>
+				<?php
+				}
+            	?>
 				</div>
 				<div class="card">
 				<img src="https://cdn.pixabay.com/photo/2012/04/11/15/52/hammer-28636__340.png" class="card-img-top" alt="...">
@@ -172,7 +166,16 @@
 					<h5 class="card-title">Alloted Work</h5>
 					<p class="card-text">Work to be completed.</p>
 				</div>
-				<div class="card-footer"><small class="text-muted">Last work updated on 4-09-2020</small></div>
+				<?php
+					$sql1 = "select max(updateTime) as date FROM workerworkupdate WHERE workerID = $workerid";
+					$updateTime = mysqli_query($db, $sql1);
+					foreach($updateTime as $date)
+					{
+				?>
+				<div class="card-footer"><small class="text-muted">Last work updated on <?php echo $date['date']; ?></small></div>
+				<?php
+				}
+            	?>
 				</div>
 				<div class="card">
 				<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTOaCpvIOoF8et2ZoYqp-ifRwpM57oq_O6SQ8E2jZ_BoubKiqsKCVIlAWEV8_hK9-ETTX2LA5LZyv73MQPJ-cjKOaC72BOMLtImTw&usqp=CAU&ec=45699845" class="card-img-top" alt="...">
@@ -180,7 +183,16 @@
 					<h5 class="card-title">Pending Orders</h5>
 					<p class="card-text">View all the pending orders to be completed.</p>
 				</div>
-				<div class="card-footer"><small class="text-muted">Next order by 24-09-2020</small></div>
+				<?php
+					$sql2 = "select min(completionDate) as date FROM allorder WHERE status = 'Not Delivered'";
+					$nextorder = mysqli_query($db, $sql2);
+					foreach($nextorder as $order)
+					{
+				?>
+				<div class="card-footer"><small class="text-muted">Next order by <?php echo $order['date']; ?></small></div>
+				<?php
+					}
+            	?>
 				</div>
 			</div>
 		</div>

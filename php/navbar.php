@@ -64,6 +64,7 @@
     <a href="resourceRequest.php">Resource Requests</a>
     <a href="workupdate.php">Work Update</a>
     <a href="pendingorder.php">Pending Orders</a>
+    <a href="allWorkers.php">Workers</a>
 </div>
 <?php
  }
@@ -73,10 +74,10 @@
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeSideNav()">&times;</a>
     <a href="workerResource.php">Your Resources</a>
-    <a href="#">Request Resource</a>
+    <a href="requestResource.php">Request Resource</a>
     <a href="#">All Requests</a>
     <a href="#">Update Work Progress</a>
-    <a href="pendingorder.php">Pending Work</a>
+    <a href="pendingwork.php">Pending Work</a>
 </div>
 
 <?php
