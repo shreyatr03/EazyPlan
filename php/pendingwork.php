@@ -5,7 +5,7 @@
         session_start();
         $title = "Pending Work";                       // This is the title of a page
         include("../php/headLinks.php");
-        if(isset($_SESSION["name"])){ // && ($_SESSION["role"]=='staff')
+        if(isset($_SESSION["name"]) && ($_SESSION["role"]=='worker') ){
     ?>
 
     <body>
@@ -69,10 +69,8 @@
                     quantity: qty
                     },
                     success: function(data) {
-                        if(data==='yes')
-                            window.location.reload();
-                        else
-                            alert("Couldn't Complete your request "+data);
+                        alert(data);
+                        window.location.reload();
                     },
                     cache: false,
             });

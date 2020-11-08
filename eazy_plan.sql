@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 06, 2020 at 06:32 PM
+-- Generation Time: Nov 08, 2020 at 06:45 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.9
 
@@ -190,7 +190,7 @@ CREATE TABLE `workerworkupdate` (
 --
 
 INSERT INTO `workerworkupdate` (`workerID`, `orderID`, `productQTY`, `updateTime`, `AllocID`) VALUES
-(2, 1, 10, '2020-11-05', 1);
+(2, 1, 30, '2020-11-05', 1);
 
 --
 -- Indexes for dumped tables
