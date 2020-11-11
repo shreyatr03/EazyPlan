@@ -82,4 +82,21 @@
 
 <?php
  }
+ else if(isset($_SESSION["name"]) && ($_SESSION["role"]=='admin')) {
+?>
+
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeSideNav()">&times;</a>
+    <a href="resource.php">All Resources</a>
+    <a href="viewallocatedresource.php">Allocated Resources</a>
+    <a href="resourceRequest.php">Resource Requests</a>
+    <a href="workupdate.php">Work Update</a>
+    <a href="pendingorder.php">Pending Orders</a>
+    <a href="register.php">Add User</a>
+    <a href="allWorkers.php">Workers</a>
+    <a href="allStaffs.php">Staffs</a>
+</div>
+
+<?php
+ }
 ?>

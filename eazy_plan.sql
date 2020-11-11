@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 08, 2020 at 06:45 AM
+-- Generation Time: Nov 11, 2020 at 07:19 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.9
 
@@ -42,7 +42,8 @@ CREATE TABLE `account` (
 INSERT INTO `account` (`userid`, `name`, `email`, `role`, `password`) VALUES
 (1, 'Shreya', 'shreya@gmail.com', 'staff', 'hellohello123'),
 (2, 'Hariharan', 'hariharan@gmail.com', 'worker', 'hellohello123'),
-(3, 'Arun', 'arun@gmail.com', 'worker', 'hellohello123');
+(3, 'Arun', 'arun@gmail.com', 'worker', 'hellohello123'),
+(4, 'admin', 'admin@gmail.com', 'admin', 'hellohello123');
 
 -- --------------------------------------------------------
 

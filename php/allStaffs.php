@@ -14,7 +14,7 @@
         ?>
 
         <div class="container">
-        <br><h2>Workers</h2><br>
+        <br><h2>Staffs</h2><br>
             <div class="row" id="heading">
                 <div class="col-md-2" id="val" >WorkerID</div>
                 <div class="col-md-4" id="val" >Name</div>
@@ -23,7 +23,7 @@
 
             <?php
                 include("../connection/config.php");
-                $sql ="select userid, name, email FROM account where role='worker'";
+                $sql ="select userid, name, email FROM account where role='staff'";
                 $workers = mysqli_query($db, $sql);
                 foreach($workers as $worker)
                     {
