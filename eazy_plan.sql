@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 11, 2020 at 07:19 AM
+-- Generation Time: Nov 16, 2020 at 06:29 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.9
 
@@ -65,7 +65,8 @@ CREATE TABLE `allocatedresources` (
 
 INSERT INTO `allocatedresources` (`workerID`, `resourceID`, `quantity`, `StaffID`, `AllocDate`) VALUES
 (2, 1, 10, 1, '2020-11-05'),
-(2, 2, 10, 1, '2020-11-05');
+(2, 2, 10, 1, '2020-11-05'),
+(3, 1, 2, 1, '2020-11-16');
 
 -- --------------------------------------------------------
 
@@ -111,7 +112,7 @@ CREATE TABLE `pendingorder` (
 --
 
 INSERT INTO `pendingorder` (`orderID`, `CompletedProdQTY`, `lastUpdated`) VALUES
-(1, 20, '2020-11-05'),
+(1, 41, '2020-11-16'),
 (2, 0, '2020-11-06');
 
 -- --------------------------------------------------------
@@ -133,7 +134,7 @@ CREATE TABLE `resource` (
 --
 
 INSERT INTO `resource` (`id`, `name`, `quantity`, `unit`, `cost`) VALUES
-(1, 'Wire', 1000, 'meter', 100),
+(1, 'Wire', 996, 'meter', 100),
 (2, 'screw', 880, 'pieces', 5),
 (3, 'Resistor', 800, 'Pieces', 50);
 
@@ -158,7 +159,9 @@ CREATE TABLE `resourcerq` (
 --
 
 INSERT INTO `resourcerq` (`workerID`, `resourceID`, `rqQTY`, `dateRq`, `dateAlot`, `alot`, `ReqId`) VALUES
-(2, 2, 10, '2020-11-04 16:50:52', '2020-11-04 16:50:52', 1, 1);
+(2, 2, 10, '2020-11-04 16:50:52', '2020-11-04 16:50:52', 1, 1),
+(2, 1, 2, '2016-11-19 18:30:00', '2020-11-16 16:05:14', 1, 2),
+(3, 1, 2, '2016-11-19 18:30:00', '2020-11-16 16:21:44', 1, 3);
 
 -- --------------------------------------------------------
 
@@ -171,6 +174,27 @@ CREATE TABLE `totalworkupdate` (
   `userID` int(10) NOT NULL,
   `productQTY` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `workallocation`
+--
+
+CREATE TABLE `workallocation` (
+  `AllocID` int(11) NOT NULL,
+  `WorkerID` int(11) NOT NULL,
+  `OrderID` int(11) NOT NULL,
+  `Quantity` int(11) NOT NULL,
+  `CompleteBy` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `workallocation`
+--
+
+INSERT INTO `workallocation` (`AllocID`, `WorkerID`, `OrderID`, `Quantity`, `CompleteBy`) VALUES
+(1, 2, 1, 50, '2020-11-11');
 
 -- --------------------------------------------------------
 
@@ -191,7 +215,7 @@ CREATE TABLE `workerworkupdate` (
 --
 
 INSERT INTO `workerworkupdate` (`workerID`, `orderID`, `productQTY`, `updateTime`, `AllocID`) VALUES
-(2, 1, 30, '2020-11-05', 1);
+(2, 1, 41, '2020-11-16', 1);
 
 --
 -- Indexes for dumped tables
@@ -245,6 +269,14 @@ ALTER TABLE `totalworkupdate`
   ADD KEY `account_totalworkupdate` (`userID`);
 
 --
+-- Indexes for table `workallocation`
+--
+ALTER TABLE `workallocation`
+  ADD PRIMARY KEY (`AllocID`),
+  ADD KEY `orderid_fk` (`OrderID`),
+  ADD KEY `workerid_fk` (`WorkerID`);
+
+--
 -- Indexes for table `workerworkupdate`
 --
 ALTER TABLE `workerworkupdate`
@@ -260,7 +292,13 @@ ALTER TABLE `workerworkupdate`
 -- AUTO_INCREMENT for table `resourcerq`
 --
 ALTER TABLE `resourcerq`
-  MODIFY `ReqId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ReqId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `workallocation`
+--
+ALTER TABLE `workallocation`
+  MODIFY `AllocID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
@@ -293,6 +331,13 @@ ALTER TABLE `resourcerq`
 ALTER TABLE `totalworkupdate`
   ADD CONSTRAINT `account_totalworkupdate` FOREIGN KEY (`userID`) REFERENCES `account` (`userid`),
   ADD CONSTRAINT `pendingorder_totalworkupdate` FOREIGN KEY (`orderID`) REFERENCES `pendingorder` (`orderID`);
+
+--
+-- Constraints for table `workallocation`
+--
+ALTER TABLE `workallocation`
+  ADD CONSTRAINT `orderid_fk` FOREIGN KEY (`OrderID`) REFERENCES `allorder` (`orderID`),
+  ADD CONSTRAINT `workerid_fk` FOREIGN KEY (`WorkerID`) REFERENCES `account` (`userid`);
 
 --
 -- Constraints for table `workerworkupdate`

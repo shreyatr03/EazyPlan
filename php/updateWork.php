@@ -12,8 +12,16 @@
             $result1 = mysqli_query($db, $sql1);
             $row1 = mysqli_fetch_assoc($result1);
             if($row['Quantity']>=$row1['productQTY'] + $qty) {
-                $sql2 ="update workerworkupdate set productQTY = productQTY + $qty where AllocID = $allocid";
-                $result2 = mysqli_query($db, $sql2);
+                $ordID = $row1['orderID'];
+                $sql3 = "select po.orderID, CompletedProdQTY, quantity from pendingorder po join allorder ao on ao.orderId = po.orderID where po.orderID = $ordID";
+                $result3 = mysqli_query($db, $sql3);
+                $row3 = mysqli_fetch_assoc($result3);
+                if($row3['CompletedProdQTY']+$qty<=$row3['quantity']) {
+                    $sql2 ="update workerworkupdate set productQTY = productQTY + $qty, updateTime = now() where AllocID = $allocid";
+                    $result2 = mysqli_query($db, $sql2);
+                    $sql4 ="update pendingorder set CompletedProdQTY = CompletedProdQTY + $qty, lastUpdated = now() where orderID = $ordID";
+                    $result4 = mysqli_query($db, $sql4);
+                }
                 echo "Work Updated";
             }
             else
@@ -23,16 +31,17 @@
     echo "<h3 style='color:red'>Login to access the page...</h3>";
     echo "<a href='./login.php'>Click here to login</a>";}
     ?>
+<?php
+    // <!-- <form action="" method="POST">
+    // <label for="allocid">AllocId<span style="color:rgb(255, 118, 113);">*</span></label>
+    //     <input name="allocid" type="email" type="text" placeholder="eg: abc@mail.com" onchange="check()">
+    //     <br>
 
-    <form action="" method="POST">
-    <label for="allocid">AllocId<span style="color:rgb(255, 118, 113);">*</span></label>
-        <input name="allocid" type="email" type="text" placeholder="eg: abc@mail.com" onchange="check()">
-        <br>
+    //     <label for="quantity">Password<span style="color:rgb(255, 118, 113);">*</span></label>
+    //     <input name="password" type="password" placeholder="Enter password" value="hellohello123">
+    //     <br><br>
 
-        <label for="quantity">Password<span style="color:rgb(255, 118, 113);">*</span></label>
-        <input name="password" type="password" placeholder="Enter password" value="hellohello123">
-        <br><br>
+    //     <button class="btn btn-info" value="Submit" type="submit"> Login </button>
 
-        <button class="btn btn-info" value="Submit" type="submit"> Login </button>
-
-    </form>
+    // </form> -->
+    ?>
