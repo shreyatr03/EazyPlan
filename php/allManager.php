@@ -5,7 +5,7 @@
         session_start();
         $title = "Requests";                       // This is the title of a page
         include("../php/headLinks.php");
-        if(isset($_SESSION["name"]) && ($_SESSION["role"]=='staff' || $_SESSION["role"]=='admin' || $_SESSION["role"]=='manager')){
+        if(isset($_SESSION["name"]) && ($_SESSION["role"]=='staff' || $_SESSION["role"]=='admin')){
     ?>
 
     <body>
@@ -14,16 +14,16 @@
         ?>
 
         <div class="container">
-        <br><h2>Workers</h2><br>
+        <br><h2>Staffs</h2><br>
             <div class="row" id="heading">
-                <div class="col-md-2" id="val" >WorkerID</div>
+                <div class="col-md-2" id="val" >ManagerID</div>
                 <div class="col-md-4" id="val" >Name</div>
                 <div class="col-md-4" id="val" >Email</div>
             </div>
 
             <?php
                 include("../connection/config.php");
-                $sql ="select userid, name, email FROM account where role='worker'";
+                $sql ="select userid, name, email FROM account where role='manager'";
                 $workers = mysqli_query($db, $sql);
                 foreach($workers as $worker)
                     {

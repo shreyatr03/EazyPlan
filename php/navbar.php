@@ -1,21 +1,34 @@
 <nav class="navbar navbar-expand-lg navbar-light navcolor" style="z-index: 1;">
+    
     <span class="sideNavButton" onclick="openNav()">&#9776;</span>&nbsp;&nbsp;
+    
     <?php
         if(isset($_SESSION["name"]) && ($_SESSION["role"]=='staff')){
     ?>
     <a class=" brand" href="./homepagestaff.php">EazyPlan</a>
+    
     <?php
         }
         else if(isset($_SESSION["name"]) && ($_SESSION["role"]=='worker')){
     ?>
     <a class=" brand" href="./homepageworker.php">EazyPlan</a>
+    
+    <?php
+        }
+        else if(isset($_SESSION["name"]) && ($_SESSION["role"]=='admin')){
+    ?>
+    <a class=" brand" href="./homepageAdmin.php">EazyPlan</a>
+    
     <?php
         }
     ?>
+
     
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
+
+
     
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
@@ -33,9 +46,18 @@
             <a class="nav-link" href="./homepageworker.php">Home</a>
             <?php
                 }
+                else if(isset($_SESSION["name"]) && ($_SESSION["role"]=='admin')){
             ?>
-        </li>
+                <a class="nav-link" href="./homepageAdmin.php">Home</a>
+            <?php
+                }else if(isset($_SESSION["name"]) && ($_SESSION["role"]=='manager')){
+            ?>
+                <a class="nav-link" href="./homepageManager.php">Home</a>
+            <?php
+                }
+            ?>
 
+        </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="fas fa-user-cog" aria-hidden="true"></span>&nbsp;&nbsp; <?php echo "Welcome ".$_SESSION["name"]; ?>
@@ -52,6 +74,7 @@
         </li>
 
         </ul>
+
     </div>
 </nav>
 <?php
@@ -75,7 +98,7 @@
     <a href="javascript:void(0)" class="closebtn" onclick="closeSideNav()">&times;</a>
     <a href="workerResource.php">Your Resources</a>
     <a href="requestResource.php">Request Resource</a>
-    <a href="#">All Requests</a>
+    <a href="workerresourcereq.php">All Requests</a>
     <a href="updateWork.php">Update Work Progress</a>
     <a href="pendingwork.php">Pending Work</a>
 </div>
@@ -88,15 +111,29 @@
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeSideNav()">&times;</a>
     <a href="resource.php">All Resources</a>
-    <a href="viewallocatedresource.php">Allocated Resources</a>
-    <a href="resourceRequest.php">Resource Requests</a>
     <a href="workupdate.php">Work Update</a>
     <a href="pendingorder.php">Pending Orders</a>
     <a href="register.php">Add User</a>
-    <a href="allWorkers.php">Workers</a>
-    <a href="allStaffs.php">Staffs</a>
+    <a href="allWorkers.php">All Workers</a>
+    <a href="allStaffs.php">All Staffs</a>
+    <a href="allManager.php">All Manager</a>
 </div>
 
 <?php
- }
+ }else if(isset($_SESSION["name"]) && ($_SESSION["role"]=='manager')) {
+?>
+
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeSideNav()">&times;</a>
+    <a href="resource.php">All Resources</a>
+    <a href="createorder.php">Create Order</a>
+    <a href="pendingorder.php">Pending Orders</a>
+    <a href="addResource.php">Add Resource</a>
+    <a href="allStaffs.php">All Staffs</a>
+    <a href="allWorkers.php">All Workers</a>
+    <a href="allOrders.php">All Orders</a>
+</div>
+
+<?php
+    }
 ?>

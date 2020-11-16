@@ -17,7 +17,6 @@ if(isset($_POST['username']) && isset($_POST['role']) && isset($_POST['name']) &
     $role = mysqli_real_escape_string($db, $role);
     if($role=="manager" || $role=="staff" || $role=="worker") 
     {
-
         $sql = "select * from account where email = '$username'"; 
         $result = mysqli_query($db, $sql);
 
@@ -40,7 +39,8 @@ if(isset($_POST['username']) && isset($_POST['role']) && isset($_POST['name']) &
                 $result1 = mysqli_query($db, $sql1);
                 $row1 = mysqli_fetch_array($result1);
                 $new_userid = $row1['usd_max']+1;
-                $sql2 = 'insert into account(userid, name, email, role, password) values ($new_userid, $name, $username, $role, $password)';
+                $sql2 = 'insert into account(userid, name, email, role, password) values(\''.$new_userid.'\',\''.$name.'\',\''.$username.'\',\''.$role.'\',\''.$password.'\')';
+                echo $sql2;
                 $result2 = mysqli_query($db, $sql2);
                 echo "<center><h2 style='color:red;'><i>New user added</i></h2></center>";
             }

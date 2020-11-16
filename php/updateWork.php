@@ -23,3 +23,16 @@
     echo "<h3 style='color:red'>Login to access the page...</h3>";
     echo "<a href='./login.php'>Click here to login</a>";}
     ?>
+
+    <form action="" method="POST">
+    <label for="allocid">AllocId<span style="color:rgb(255, 118, 113);">*</span></label>
+        <input name="allocid" type="email" type="text" placeholder="eg: abc@mail.com" onchange="check()">
+        <br>
+
+        <label for="quantity">Password<span style="color:rgb(255, 118, 113);">*</span></label>
+        <input name="password" type="password" placeholder="Enter password" value="hellohello123">
+        <br><br>
+
+        <button class="btn btn-info" value="Submit" type="submit"> Login </button>
+
+    </form>

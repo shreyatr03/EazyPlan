@@ -5,7 +5,7 @@
 		session_start();
 		$title = "EazyPlan";             // This is the title of a page
         include("../php/headLinks.php");
-        if(isset($_SESSION["name"]) && ($_SESSION["role"]=='admin')){
+        if(isset($_SESSION["name"]) && ($_SESSION["role"]=='manager')){
     ?>
 
     <body>
@@ -20,18 +20,18 @@
 					<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSkLB9PFPhs0X2MxKej62wtmbTSj7x4BS88pRM57WHULnvtUm57G1tJJ2zvLeSpLnZvRHeZtqtqdvdbeo9oZCYzEj2HbIwOzTFWsQ&usqp=CAU&ec=45699845" class="card-img-top" alt="...">
 					<div class="card-body">
 						<h5 class="card-title">All Resources</h5>
-						<p class="card-text">Total Resources available.</p>
+						<p class="card-text">Resource allocated to individual workers.</p>
 					</div>
 					<div class="card-footer"><small class="text-muted">Resource updated on 5-09-2020</small></div>
 				</div>
 
-				<div class="card" style="cursor: pointer;" onclick="window.location='register.php';" >
+				<div class="card" style="cursor: pointer;" onclick="window.location='viewallocatedresource.php';" >
 					<img src="https://www.thesoftwarereport.com/wp-content/uploads/2018/08/supplychain.png" class="card-img-top" alt="...">
 					<div class="card-body">
-						<h5 class="card-title">Add User</h5>
-						<p class="card-text">Add a new staff, manager or worker.</p>
+						<h5 class="card-title">Add Resources</h5>
+						<p class="card-text"></p>
 					</div>
-					<div class="card-footer"><small class="text-muted">Last allocated to Hariharan</small></div>
+					<div class="card-footer"><small class="text-muted">Add resoures to the system</small></div>
 				</div>
 
 				<div class="card" style="cursor: pointer;" onclick="window.location='pendingorder.php';" >

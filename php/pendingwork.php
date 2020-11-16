@@ -30,6 +30,12 @@
                 $workerid = $_SESSION['userId'];
                 $sql1 ="select w.AllocID, w.orderID, o.name as oname, w.Quantity, CompleteBy FROM workallocation w JOIN allorder o on w.orderID = o.orderID where WorkerID = $workerid";
                 $requests = mysqli_query($db, $sql1);
+                if (!$requests) 
+                {
+                    printf("Error: %s\n", mysqli_error($db));
+                    exit();
+                }
+                else{
                 foreach($requests as $request)
                     {
                         $allocid = $request['AllocID'];
@@ -51,6 +57,7 @@
 
             <?php
                 }
+            }
             ?>
 
         </div>

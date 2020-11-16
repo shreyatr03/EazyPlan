@@ -5,7 +5,7 @@
         session_start();
         $title = "Resources";                       // This is the title of a page
         include("../php/headLinks.php");
-        if(isset($_SESSION["name"]) && ($_SESSION["role"]=='staff' || $_SESSION["role"]=='admin')){
+        if(isset($_SESSION["name"]) && ($_SESSION["role"]=='staff' || $_SESSION["role"]=='admin' || $_SESSION["role"]=='manager')){
     ?>
 
     <body>

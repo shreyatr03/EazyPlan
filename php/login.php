@@ -39,6 +39,9 @@ if(isset($_POST['username']))
             else if($row['role']=='admin'){
                 header("location: homepageAdmin.php");
             }
+            else if($row['role']=='manager'){
+                header("location: homepageManager.php");
+            }
         }  
         else
         {  
@@ -75,6 +78,7 @@ if(isset($_POST['username']))
 
 </head>
 <body>
+
     <div class="container">
         <div class="row">
 
@@ -96,7 +100,7 @@ if(isset($_POST['username']))
                     <br>
 
                     <label for="pass">Password<span style="color:rgb(255, 118, 113);">*</span></label>
-                    <input name="password" type="password" placeholder="Enter password">
+                    <input name="password" type="password" placeholder="Enter password" value="hellohello123">
                     <br><br>
 
                     <button class="btn btn-info" value="Submit" type="submit"> Login </button>
