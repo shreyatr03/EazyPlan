@@ -6,7 +6,13 @@
         $title = "Add Resource";                       // This is the title of a page
         include("../php/headLinks.php");
         include("../connection/config.php");
-        if(isset($_SESSION["name"]) && ($_SESSION["role"]=='manager'))
+        
+    ?>
+
+    <body>
+        <?php
+            include("../php/navbar.php");
+            if(isset($_SESSION["name"]) && ($_SESSION["role"]=='manager'))
         { 
             if(isset($_POST["name"]))
             {
@@ -25,15 +31,10 @@
                     echo "Resource Added";
                 }
             }
-    ?>
-
-    <body>
-        <?php
-            include("../php/navbar.php");
         ?>
         <form method="POST">
         <div class="container">
-        <br><h2>Add Resource Stock</h2><br>
+        <br><h2>Add Resources</h2><br>
             
             <label id="val" >Name</label><br>
             <input id="val" name="name" style="border-radius:3px;border:1px solid black;" required><br>

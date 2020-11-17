@@ -15,7 +15,8 @@
                 $row1 = mysqli_fetch_array($res);
                 $id = $row1['rid_max']+1;
                 $sql = "insert into resourcerq(workerID,resourceID,rqQTY,dateRq,alot,ReqId) values(".$_SESSION['userId'].",".$_POST['id'].",".$_POST['qty'].",'".date("d-m-y")."',0,".$id.")"; 
-                $result = mysqli_query($db, $sql);
+                $result = mysqli_query($db, $sql);   
+                echo $sql;
 
                 if (!$result) 
                 {

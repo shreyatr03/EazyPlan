@@ -160,7 +160,7 @@
 				}
             	?>
 				</div>
-				<div class="card">
+				<div class="card"  style="cursor: pointer;" onclick="window.location='pendingwork.php';">
 				<img src="https://cdn.pixabay.com/photo/2012/04/11/15/52/hammer-28636__340.png" class="card-img-top" alt="...">
 				<div class="card-body">
 					<h5 class="card-title">Alloted Work</h5>
@@ -177,11 +177,11 @@
 				}
             	?>
 				</div>
-				<div class="card">
+				<div class="card"   style="cursor: pointer;" onclick="window.location='workerResource.php';">
 				<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTOaCpvIOoF8et2ZoYqp-ifRwpM57oq_O6SQ8E2jZ_BoubKiqsKCVIlAWEV8_hK9-ETTX2LA5LZyv73MQPJ-cjKOaC72BOMLtImTw&usqp=CAU&ec=45699845" class="card-img-top" alt="...">
 				<div class="card-body">
-					<h5 class="card-title">Pending Orders</h5>
-					<p class="card-text">View all the pending orders to be completed.</p>
+					<h5 class="card-title">All Resources</h5>
+					<p class="card-text">View all the resources alloted to you.</p>
 				</div>
 				<?php
 					$sql2 = "select min(completionDate) as date FROM allorder WHERE status = 'Not Delivered'";
