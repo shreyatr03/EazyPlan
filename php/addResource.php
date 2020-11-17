@@ -15,7 +15,6 @@
                 $row1 = mysqli_fetch_array($res);
                 $id = $row1['rid_max']+1;
                 $sql = "insert into resource(id,name,quantity,unit,cost) values(".$id.",'".$_POST['name']."',".$_POST['quantity'].",'".$_POST['unit']."',".$_POST['cost'].")"; 
-                echo $sql;
                 $result = mysqli_query($db, $sql);   
                 if (!$result) 
                 {
@@ -34,7 +33,7 @@
         ?>
         <form method="POST">
         <div class="container">
-        <br><h2>Request Resources</h2><br>
+        <br><h2>Add Resource Stock</h2><br>
             
             <label id="val" >Name</label><br>
             <input id="val" name="name" style="border-radius:3px;border:1px solid black;" required><br>

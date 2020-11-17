@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 16, 2020 at 06:29 PM
+-- Generation Time: Nov 17, 2020 at 08:01 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.9
 
@@ -43,7 +43,9 @@ INSERT INTO `account` (`userid`, `name`, `email`, `role`, `password`) VALUES
 (1, 'Shreya', 'shreya@gmail.com', 'staff', 'hellohello123'),
 (2, 'Hariharan', 'hariharan@gmail.com', 'worker', 'hellohello123'),
 (3, 'Arun', 'arun@gmail.com', 'worker', 'hellohello123'),
-(4, 'admin', 'admin@gmail.com', 'admin', 'hellohello123');
+(4, 'admin', 'admin@gmail.com', 'admin', 'hellohello123'),
+(5, 'Vineeth', 'vineeth@gmail.com', 'manager', 'hellohello123'),
+(6, 'Rahul', 'rahul@gmail.com', 'staff', 'hellohello123');
 
 -- --------------------------------------------------------
 
@@ -112,7 +114,7 @@ CREATE TABLE `pendingorder` (
 --
 
 INSERT INTO `pendingorder` (`orderID`, `CompletedProdQTY`, `lastUpdated`) VALUES
-(1, 41, '2020-11-16'),
+(1, 20, '2020-11-05'),
 (2, 0, '2020-11-06');
 
 -- --------------------------------------------------------
@@ -135,8 +137,10 @@ CREATE TABLE `resource` (
 
 INSERT INTO `resource` (`id`, `name`, `quantity`, `unit`, `cost`) VALUES
 (1, 'Wire', 996, 'meter', 100),
-(2, 'screw', 880, 'pieces', 5),
-(3, 'Resistor', 800, 'Pieces', 50);
+(2, 'screw', 869, 'pieces', 5),
+(3, 'Resistor', 800, 'Pieces', 50),
+(4, 'Glass', 10, '1*1 meter sheets', 200),
+(5, 'Transistor', 600, 'Nos', 35);
 
 -- --------------------------------------------------------
 
@@ -161,7 +165,10 @@ CREATE TABLE `resourcerq` (
 INSERT INTO `resourcerq` (`workerID`, `resourceID`, `rqQTY`, `dateRq`, `dateAlot`, `alot`, `ReqId`) VALUES
 (2, 2, 10, '2020-11-04 16:50:52', '2020-11-04 16:50:52', 1, 1),
 (2, 1, 2, '2016-11-19 18:30:00', '2020-11-16 16:05:14', 1, 2),
-(3, 1, 2, '2016-11-19 18:30:00', '2020-11-16 16:21:44', 1, 3);
+(3, 1, 2, '2016-11-19 18:30:00', '2020-11-16 16:21:44', 1, 3),
+(2, 2, 1, '2017-11-19 18:30:00', '2020-11-17 02:39:48', 1, 4),
+(2, 2, 10, '2017-11-19 18:30:00', '2020-11-17 06:42:50', 1, 5),
+(2, 1, 2, '2017-11-19 18:30:00', '2020-11-17 06:54:02', 0, 6);
 
 -- --------------------------------------------------------
 
@@ -194,7 +201,7 @@ CREATE TABLE `workallocation` (
 --
 
 INSERT INTO `workallocation` (`AllocID`, `WorkerID`, `OrderID`, `Quantity`, `CompleteBy`) VALUES
-(1, 2, 1, 50, '2020-11-11');
+(1, 2, 1, 30, '2020-11-11');
 
 -- --------------------------------------------------------
 
@@ -215,7 +222,7 @@ CREATE TABLE `workerworkupdate` (
 --
 
 INSERT INTO `workerworkupdate` (`workerID`, `orderID`, `productQTY`, `updateTime`, `AllocID`) VALUES
-(2, 1, 41, '2020-11-16', 1);
+(2, 1, 30, '2020-11-05', 1);
 
 --
 -- Indexes for dumped tables
@@ -292,7 +299,7 @@ ALTER TABLE `workerworkupdate`
 -- AUTO_INCREMENT for table `resourcerq`
 --
 ALTER TABLE `resourcerq`
-  MODIFY `ReqId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ReqId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `workallocation`
