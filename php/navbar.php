@@ -125,12 +125,12 @@
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeSideNav()">&times;</a>
     <a href="resource.php">All Resources</a>
-    <a href="createorder.php">Create Order</a>
     <a href="pendingorder.php">Pending Orders</a>
     <a href="addResource.php">Add Resource</a>
     <a href="allStaffs.php">All Staffs</a>
     <a href="allWorkers.php">All Workers</a>
     <a href="allOrders.php">All Orders</a>
+    <a href="allocatework.php">Allocate Work</a>
 </div>
 
 <?php

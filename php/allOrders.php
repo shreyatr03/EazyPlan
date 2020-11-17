@@ -14,7 +14,14 @@
         ?>
 
         <div class="container">
-            <br><h2>All orders</h2><br>
+            <br><h2>All orders
+            <?php
+            if($_SESSION["role"]=='manager' ){
+            ?>
+                    <button class="btn btn-outline-secondary" style="margin:10px;"><a href="createorder.php"><i class="fa fa-plus" aria-hidden="true"></i></a></button>
+            <?php
+                }
+            ?></h2><br>
             <div class="row" id="heading">
                 <div class="col-md-2" id="val" >ID</div>
                 <div class="col-md-2" id="val" >Name</div>
@@ -26,8 +33,10 @@
 
             <?php
                 include("../connection/config.php");
+
                 $sql = "select * from allorder";
                 $orders = mysqli_query($db, $sql);
+
                 foreach($orders as $order)
                     {
             ?>

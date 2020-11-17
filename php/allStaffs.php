@@ -19,6 +19,7 @@
                 <div class="col-md-2" id="val" >WorkerID</div>
                 <div class="col-md-4" id="val" >Name</div>
                 <div class="col-md-4" id="val" >Email</div>
+                <div class="col-md-2" id="val" >Delete</div>
             </div>
 
             <?php
@@ -33,6 +34,16 @@
                 <div class="col-md-2" id="val" ><?php echo $worker['userid']; ?></div>
                 <div class="col-md-4" id="val" ><?php echo $worker['name']; ?></div>
                 <div class="col-md-4" id="val" ><?php echo $worker['email']; ?></div>
+                <!--div class="col-md-4" id="val" >
+                    <?php
+                    /*if($_SESSION["role"]=='admin' ){
+                    ?>
+                        <button class="btn btn-outline-secondary" style="margin:10px;" onclick="del(<?php $worker['userid'] ?>)"><i class="fa fa-minus" aria-hidden="true"></i></a></button>
+                    <?php
+                        }*/
+                    ?>
+                </div-->
+
             </div>
 
             <?php
@@ -40,6 +51,25 @@
             ?>
 
         </div>
+        <!--script>
+        function del(sid){
+            $.ajax({
+                    type: "POST",
+                    url: "del.php",
+                    dataType: "text",
+                    data: {
+                    id:sid
+                    },
+                    success: function(data) {
+                        if(data==='yes')
+                            window.location.reload();
+                        else
+                            alert("Couldn't Complete your request "+data);
+                    },
+                    cache: false,
+            });
+            }
+        </script-->
 
     </body>
 
