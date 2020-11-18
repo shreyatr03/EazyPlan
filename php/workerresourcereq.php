@@ -26,7 +26,7 @@
 
             <?php
                 include("../connection/config.php");
-                $sql1 ="select rq.dateRQ as date, rq.ReqId ,rq.alot, rq.resourceID , rq.rqQTY, r.name as rname FROM resourcerq rq JOIN account w on rq.workerID = w.userid JOIN resource r on rq.resourceID = r.id where w.userid = '".$_SESSION['userId']."'";
+                $sql1 ="select rq.dateRq as date, rq.ReqId ,rq.alot, rq.resourceID , rq.rqQTY, r.name as rname FROM resourcerq rq JOIN account w on rq.workerID = w.userid JOIN resource r on rq.resourceID = r.id where w.userid = '".$_SESSION['userId']."'";
                 //$sql1 = "SELECT workerID, resourceID, quantity, worker.name as name1, staff.name as name2 FROM allocatedresources a JOIN account worker ON a.workerID = worker.userid JOIN account staff ON a.staffID = staff.userid  WHERE a.staffid = $staffid";
                 $requests = mysqli_query($db, $sql1);
                 if (!$requests) 
@@ -43,8 +43,8 @@
             ?>
 
                     <div class="row" id="item">
-                        <div class="col-md-1" id="val" ><?php echo $request['resourceID']; ?></div>
-                        <div class="col-md-2" id="val" ><?php echo $request['ReqId']; ?></div>
+                        <div class="col-md-1" id="val" ><?php echo $request['ReqId']; ?></div>
+                        <div class="col-md-2" id="val" ><?php echo $request['resourceID']; ?></div>
                         <div class="col-md-2" id="val" ><?php echo $request['rname']; ?></div>
                         <div class="col-md-2" id="val"><?php echo $request['rqQTY'] ?></div>
                         <div class="col-md-3" id="val"><?php echo $request['date'] ?></div>
