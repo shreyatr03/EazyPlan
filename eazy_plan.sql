@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 16, 2020 at 06:29 PM
+-- Generation Time: Nov 18, 2020 at 06:14 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.9
 
@@ -43,7 +43,9 @@ INSERT INTO `account` (`userid`, `name`, `email`, `role`, `password`) VALUES
 (1, 'Shreya', 'shreya@gmail.com', 'staff', 'hellohello123'),
 (2, 'Hariharan', 'hariharan@gmail.com', 'worker', 'hellohello123'),
 (3, 'Arun', 'arun@gmail.com', 'worker', 'hellohello123'),
-(4, 'admin', 'admin@gmail.com', 'admin', 'hellohello123');
+(4, 'admin', 'admin@gmail.com', 'admin', 'hellohello123'),
+(5, 'Vineeth', 'vineeth@gmail.com', 'manager', 'hellohello123'),
+(6, 'Rahul', 'rahul@gmail.com', 'staff', 'hellohello123');
 
 -- --------------------------------------------------------
 
@@ -66,6 +68,7 @@ CREATE TABLE `allocatedresources` (
 INSERT INTO `allocatedresources` (`workerID`, `resourceID`, `quantity`, `StaffID`, `AllocDate`) VALUES
 (2, 1, 10, 1, '2020-11-05'),
 (2, 2, 10, 1, '2020-11-05'),
+(2, 3, 3, 1, '2020-11-17'),
 (3, 1, 2, 1, '2020-11-16');
 
 -- --------------------------------------------------------
@@ -93,7 +96,10 @@ CREATE TABLE `allorder` (
 
 INSERT INTO `allorder` (`orderID`, `name`, `description`, `quantity`, `orderDate`, `completionDate`, `status`, `totalEstimatedAmt`, `advanceAmt`, `amtLeft`) VALUES
 (1, 'APS Computer', '100 computers to be delivered to APS Techs, order accepted on 5-11-2020.', 100, '2020-11-05', '2020-11-25', 'Not Delivered', 3800000, 1800000, 2000000),
-(2, 'MTV Home Appliances', 'Require 350 air conditioners.', 350, '2020-11-07', '2020-11-30', 'Not Delivered', 3500000, 1000000, 2500000);
+(2, 'MTV Home Appliances', 'Require 350 air conditioners.', 350, '2020-11-07', '2020-11-30', 'Not Delivered', 3500000, 1000000, 2500000),
+(3, 'Fans', 'chahiye matlab chahiye', 20, '2020-11-17', '2020-11-20', 'pata nahi', 200000, 100000, 100000),
+(4, 'Laptops', 'i want them nooo', 20, '2020-11-17', '2020-11-20', 'not delivered', 200000, 100000, 100000),
+(5, 'Laptops', 'i want them nooo', 20, '2020-11-17', '2020-11-20', 'not delivered', 200000, 100000, 100000);
 
 -- --------------------------------------------------------
 
@@ -112,8 +118,8 @@ CREATE TABLE `pendingorder` (
 --
 
 INSERT INTO `pendingorder` (`orderID`, `CompletedProdQTY`, `lastUpdated`) VALUES
-(1, 41, '2020-11-16'),
-(2, 0, '2020-11-06');
+(1, 30, '2020-11-05'),
+(2, 3, '2020-11-18');
 
 -- --------------------------------------------------------
 
@@ -135,8 +141,11 @@ CREATE TABLE `resource` (
 
 INSERT INTO `resource` (`id`, `name`, `quantity`, `unit`, `cost`) VALUES
 (1, 'Wire', 996, 'meter', 100),
-(2, 'screw', 880, 'pieces', 5),
-(3, 'Resistor', 800, 'Pieces', 50);
+(2, 'screw', 879, 'pieces', 5),
+(3, 'Resistor', 797, 'Pieces', 50),
+(4, 'Glass', 10, '1*1 meter sheets', 200),
+(5, 'Bulb', 10, 'bulb', 100),
+(6, 'Bulb', 10, 'bulb', 100);
 
 -- --------------------------------------------------------
 
@@ -161,7 +170,11 @@ CREATE TABLE `resourcerq` (
 INSERT INTO `resourcerq` (`workerID`, `resourceID`, `rqQTY`, `dateRq`, `dateAlot`, `alot`, `ReqId`) VALUES
 (2, 2, 10, '2020-11-04 16:50:52', '2020-11-04 16:50:52', 1, 1),
 (2, 1, 2, '2016-11-19 18:30:00', '2020-11-16 16:05:14', 1, 2),
-(3, 1, 2, '2016-11-19 18:30:00', '2020-11-16 16:21:44', 1, 3);
+(3, 1, 2, '2016-11-19 18:30:00', '2020-11-16 16:21:44', 1, 3),
+(2, 2, 1, '2017-11-19 18:30:00', '2020-11-17 02:39:48', 1, 4),
+(2, 3, 3, '2020-11-17 13:40:36', '2020-11-17 13:40:36', 1, 7),
+(2, 5, 10, '2020-11-17 14:05:16', '2020-11-17 14:05:16', 0, 8),
+(2, 4, 15, '2020-11-17 14:06:57', '2020-11-17 14:06:57', 0, 9);
 
 -- --------------------------------------------------------
 
@@ -194,7 +207,9 @@ CREATE TABLE `workallocation` (
 --
 
 INSERT INTO `workallocation` (`AllocID`, `WorkerID`, `OrderID`, `Quantity`, `CompleteBy`) VALUES
-(1, 2, 1, 50, '2020-11-11');
+(1, 2, 1, 30, '2020-11-11'),
+(2, 3, 2, 20, '2020-11-19'),
+(3, 2, 2, 20, '2020-11-22');
 
 -- --------------------------------------------------------
 
@@ -215,7 +230,8 @@ CREATE TABLE `workerworkupdate` (
 --
 
 INSERT INTO `workerworkupdate` (`workerID`, `orderID`, `productQTY`, `updateTime`, `AllocID`) VALUES
-(2, 1, 41, '2020-11-16', 1);
+(2, 1, 30, '2020-11-05', 1),
+(2, 2, 3, '2020-11-18', 3);
 
 --
 -- Indexes for dumped tables
@@ -292,13 +308,13 @@ ALTER TABLE `workerworkupdate`
 -- AUTO_INCREMENT for table `resourcerq`
 --
 ALTER TABLE `resourcerq`
-  MODIFY `ReqId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ReqId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `workallocation`
 --
 ALTER TABLE `workallocation`
-  MODIFY `AllocID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `AllocID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

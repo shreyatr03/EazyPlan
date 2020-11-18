@@ -11,7 +11,18 @@
             $sql1 = "select * from workerworkupdate where AllocID = $allocid";
             $result1 = mysqli_query($db, $sql1);
             $row1 = mysqli_fetch_assoc($result1);
-            if($row['Quantity']>=$row1['productQTY'] + $qty) {
+            if(mysqli_num_rows($result1)==0){ 
+                if($row['Quantity']>=$qty) {
+                    $ordid = $row['OrderID'];
+                    $sql5 = "insert into `workerworkupdate`(`workerID`, `orderID`, `productQTY`, `updateTime`, `AllocID`) VALUES ($workerid, $ordid, $qty, now(), $allocid)";
+                    $result5 = mysqli_query($db, $sql5);
+                    $sql6 ="update pendingorder set CompletedProdQTY = CompletedProdQTY + $qty, lastUpdated = now() where orderID = $ordid";
+                    $result6 = mysqli_query($db, $sql6);
+                    echo "Work Updated";
+                }
+            }
+            
+            else if($row['Quantity']>=$row1['productQTY'] + $qty) {
                 $ordID = $row1['orderID'];
                 $sql3 = "select po.orderID, CompletedProdQTY, quantity from pendingorder po join allorder ao on ao.orderId = po.orderID where po.orderID = $ordID";
                 $result3 = mysqli_query($db, $sql3);
@@ -21,8 +32,9 @@
                     $result2 = mysqli_query($db, $sql2);
                     $sql4 ="update pendingorder set CompletedProdQTY = CompletedProdQTY + $qty, lastUpdated = now() where orderID = $ordID";
                     $result4 = mysqli_query($db, $sql4);
+                    echo "Work Updated";
                 }
-                echo "Work Updated";
+                
             }
             else
             echo "Couldn't Update";
