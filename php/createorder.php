@@ -32,10 +32,6 @@
                     echo "Alotted".$sql;
                 }
 
-                $sql = "select max(orderID) as oid_max from pendingorder";
-                $res = mysqli_query($db, $sql);
-                $row1 = mysqli_fetch_array($res);
-                $id = $row1['oid_max']+1;
                 $sql = "insert into pendingorder(orderID,CompletedProdQty,LastUpdated) values(".$id.",0,'".$_POST['odt']."')";
                 $result = mysqli_query($db, $sql);   
 

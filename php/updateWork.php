@@ -5,34 +5,74 @@
             $allocid = $_POST["allocid"];
             $qty = $_POST["quantity"];
             $workerid = $_SESSION['userId'];
+
             $sql = "select * from workallocation where AllocId = $allocid";
             $result = mysqli_query($db, $sql);
             $row = mysqli_fetch_assoc($result);
+
             $sql1 = "select * from workerworkupdate where AllocID = $allocid";
             $result1 = mysqli_query($db, $sql1);
             $row1 = mysqli_fetch_assoc($result1);
+
             if(mysqli_num_rows($result1)==0){ 
                 if($row['Quantity']>=$qty) {
                     $ordid = $row['OrderID'];
                     $sql5 = "insert into `workerworkupdate`(`workerID`, `orderID`, `productQTY`, `updateTime`, `AllocID`) VALUES ($workerid, $ordid, $qty, now(), $allocid)";
                     $result5 = mysqli_query($db, $sql5);
+
                     $sql6 ="update pendingorder set CompletedProdQTY = CompletedProdQTY + $qty, lastUpdated = now() where orderID = $ordid";
                     $result6 = mysqli_query($db, $sql6);
                     echo "Work Updated";
-                }
+
+                    if($row['Quantity']==$qty){
+                        $sql7 = "select CompletedProdQTY from pendingorder where orderID = $ordid";
+                        $result7 = mysqli_query($db, $sql7);
+                        $row2 = mysqli_fetch_assoc($result7);
+                        $completed = $row['CompletedProdQTY'];
+
+                        $sql8 = "select quantity from allorder where orderID = $ordid";
+                        $result8 = mysqli_query($db, $sql8);
+                        $row3 = mysqli_fetch_assoc($result8);
+                        $needed = $row['quantity'];
+
+                        if($needed == $completed){
+                            $sql9 = "delete from pendingorder where orderID = $ordid";
+                            $result9 = mysqli_query($db, $sql4);
+                        }
+                    }
+                 }
             }
             
             else if($row['Quantity']>=$row1['productQTY'] + $qty) {
+
                 $ordID = $row1['orderID'];
                 $sql3 = "select po.orderID, CompletedProdQTY, quantity from pendingorder po join allorder ao on ao.orderId = po.orderID where po.orderID = $ordID";
                 $result3 = mysqli_query($db, $sql3);
                 $row3 = mysqli_fetch_assoc($result3);
+                
                 if($row3['CompletedProdQTY']+$qty<=$row3['quantity']) {
                     $sql2 ="update workerworkupdate set productQTY = productQTY + $qty, updateTime = now() where AllocID = $allocid";
                     $result2 = mysqli_query($db, $sql2);
                     $sql4 ="update pendingorder set CompletedProdQTY = CompletedProdQTY + $qty, lastUpdated = now() where orderID = $ordID";
                     $result4 = mysqli_query($db, $sql4);
                     echo "Work Updated";
+
+                    if($row3['CompletedProdQTY']+$qty<=$row3['quantity']){
+                        $sql7 = "select CompletedProdQTY from pendingorder where orderID = $ordID";
+                        $result7 = mysqli_query($db, $sql7);
+                        $row2 = mysqli_fetch_assoc($result7);
+                        $completed = $row['CompletedProdQTY'];
+
+                        $sql8 = "select quantity from allorder where orderID = $ordID";
+                        $result8 = mysqli_query($db, $sql8);
+                        $row3 = mysqli_fetch_assoc($result8);
+                        $needed = $row['quantity'];
+
+                        if($needed == $completed){
+                            $sql9 = "delete from pendingorder where orderID = $ordID";
+                            $result9 = mysqli_query($db, $sql4);
+                        }
+                    }
                 }
                 
             }
