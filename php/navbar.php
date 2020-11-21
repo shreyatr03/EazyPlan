@@ -20,9 +20,13 @@
     <a class=" brand" href="./homepageAdmin.php">EazyPlan</a>
     
     <?php
+        }else if(isset($_SESSION["name"]) && ($_SESSION["role"]=='manager')){
+    ?>
+    <a class=" brand" href="./homepageAdmin.php">EazyPlan</a>
+    
+    <?php
         }
     ?>
-
     
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
