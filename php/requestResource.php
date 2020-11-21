@@ -8,15 +8,20 @@
         include("../connection/config.php");
         if(isset($_SESSION["name"]) && ($_SESSION["role"]=='worker'))
         { 
+            
+    ?>
+
+    <body>
+        <?php
+            include("../php/navbar.php");
             if(isset($_POST["id"]))
             {
                 $sql = "select max(ReqId) as rid_max from resourcerq";
                 $res = mysqli_query($db, $sql);
                 $row1 = mysqli_fetch_array($res);
                 $id = $row1['rid_max']+1;
-                $sql = "insert into resourcerq(workerID,resourceID,rqQTY,dateRq,alot,ReqId) values(".$_SESSION['userId'].",".$_POST['id'].",".$_POST['qty'].",'".date("d-m-y")."',0,".$id.")"; 
-                $result = mysqli_query($db, $sql);   
-                echo $sql;
+                $sql = "insert into resourcerq(workerID,resourceID,rqQTY,dateRq,dateAlot,alot,ReqId) values(".$_SESSION['userId'].",".$_POST['id'].",".$_POST['qty'].",now(),now(),0,".$id.")"; 
+                $result = mysqli_query($db, $sql);
 
                 if (!$result) 
                 {
@@ -27,11 +32,6 @@
                     echo "Requested";
                 }
             }
-    ?>
-
-    <body>
-        <?php
-            include("../php/navbar.php");
         ?>
         <form method="POST">
         <div class="container">

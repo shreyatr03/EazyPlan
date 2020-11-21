@@ -1,3 +1,9 @@
+<style>
+    body{
+        background-color: #EAF4FF;
+    }
+
+</style>
 <nav class="navbar navbar-expand-lg navbar-light navcolor" style="z-index: 1;">
     
     <span class="sideNavButton" onclick="openNav()">&#9776;</span>&nbsp;&nbsp;
@@ -62,15 +68,19 @@
             ?>
 
         </li>
-        <li class="nav-item dropdown">
+        <!-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="fas fa-user-cog" aria-hidden="true"></span>&nbsp;&nbsp; <?php echo "Welcome ".$_SESSION["name"]; ?>
+                <span class="fas fa-user-cog" aria-hidden="true"></span>&nbsp;&nbsp; <?php //echo "Welcome ".$_SESSION["name"]; ?>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="#">Your Profile</a>
             </div>
+        </li> -->
+        <li class="nav-item">
+            <a class="nav-link" href="profile.php">
+                <span class="fas fa-user-cog" aria-hidden="true"></span>&nbsp;&nbsp; <?php echo "Welcome ".$_SESSION["name"]; ?>
+            </a>
         </li>
-
         <li class="nav-item">
             <a class="nav-link" href="./logout.php">
                 <span class="fas fa-power-off" aria-hidden="true"></span>&nbsp;Logout
