@@ -3,7 +3,7 @@
 <html lang="en">
     <?php
         session_start();
-        $title = "Requests";                       // This is the title of a page
+        $title = "Staffs";                       // This is the title of a page
         include("../php/headLinks.php");
         if(isset($_SESSION["name"]) && ($_SESSION["role"]=='manager' || $_SESSION["role"]=='admin')){
     ?>
@@ -19,7 +19,6 @@
                 <div class="col-md-2" id="val" >WorkerID</div>
                 <div class="col-md-4" id="val" >Name</div>
                 <div class="col-md-4" id="val" >Email</div>
-                <div class="col-md-2" id="val" >Delete</div>
             </div>
 
             <?php

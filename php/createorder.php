@@ -3,7 +3,7 @@
 <html lang="en">
     <?php
         session_start();
-        $title = "Allocate";                       // This is the title of a page
+        $title = "Order";                       // This is the title of a page
         include("../php/headLinks.php");
         include("../connection/config.php");
         if(isset($_SESSION["name"]) && ($_SESSION["role"]=='manager'))
@@ -29,7 +29,7 @@
                     exit();
                 }
                 else{
-                    echo "Alotted".$sql;
+                    echo "New Contract Initiated";
                 }
 
                 $sql = "insert into pendingorder(orderID,CompletedProdQty,LastUpdated) values(".$id.",0,'".$_POST['odt']."')";
@@ -40,14 +40,11 @@
                     printf("Error: %s\n", mysqli_error($db));
                     exit();
                 }
-                else{
-                    echo "Alotted".$sql;
-                }
             }
         ?>
         <form method="POST">
         <div class="container">
-        <br><h2>Allocate work</h2><br>
+        <br><h2>Create Contract Details</h2><br>
             
             <label id="val" >Name:</label><br>
             <input id="val" name="name" style="border-radius:3px;border:1px solid black;" required><br>
@@ -76,7 +73,7 @@
             <label id="val" >Amount left to be paid:</label><br>
             <input id="val" name="lamt" style="border-radius:3px;border:1px solid black;" required><br>
 
-            <button type="submit" class="btn btn-danger" style="margin-top:10px;">Request</button>
+            <button type="submit" class="btn btn-danger" style="margin-top:10px;">Create</button>
         </div>
         <form>
 

@@ -75,7 +75,7 @@ if(isset($_POST['username']) && isset($_POST['role']) && isset($_POST['name']) &
 
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
 
-<title>Login</title>
+<title>Add User</title>
 
 </head>
 <body>

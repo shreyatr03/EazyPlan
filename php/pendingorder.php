@@ -3,7 +3,7 @@
 <html lang="en">
     <?php
         session_start();
-        $title = "Requests";                       // This is the title of a page
+        $title = "Pending Orders";                       // This is the title of a page
         include("../php/headLinks.php");
         if(isset($_SESSION["name"]) && ($_SESSION["role"]=='staff' || $_SESSION["role"]=='admin' || $_SESSION["role"]=='manager'  )){
     ?>

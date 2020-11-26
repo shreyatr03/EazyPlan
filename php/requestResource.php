@@ -33,19 +33,47 @@
                 }
             }
         ?>
-        <form method="POST">
-        <div class="container">
-        <br><h2>Request Resources</h2><br>
-            
-            <label id="val" >ResourceID:</label><br>
-            <input id="val" name="id" style="border-radius:3px;border:1px solid black;" required><br>
+        <div class="row" style="width:95%; padding:20px">
+            <div class="col-md-6">
+                <div class="row" id="heading">
+                    <div class="col-md-4" id="val" >ID</div>
+                    <div class="col-md-8" id="val" >Name</div>
+                </div>
+                <?php
+                    $sql = "select id, name from resource";
+                    $resources = mysqli_query($db, $sql);
+                    foreach($resources as $resource)
+                        {
+                ?>
 
-            <label id="val" >Quantity:</label><br>
-            <input id="val" name="qty"  style="border-radius:3px;border:1px solid black;" required><br>
-            
-            <button type="submit" class="btn btn-danger" style="margin-top:10px;">Request</button>
+                <div class="row" id="item">
+                    <div class="col-md-4" id="val" ><?php echo $resource['id']; ?></div>
+                    <div class="col-md-8" id="val" ><?php echo $resource['name']; ?></div>
+
+                </div>
+
+                <?php
+                    }
+                ?>
+            </div>
+
+            <div class="col-md-6">
+                <form method="POST">
+                <div class="container">
+                <br><h2>Request Resources</h2><br>
+
+                    <label id="val" >ResourceID:</label><br>
+                    <input id="val" name="id" style="border-radius:3px;border:1px solid black;" required><br>
+
+                    <label id="val" >Quantity:</label><br>
+                    <input id="val" name="qty"  style="border-radius:3px;border:1px solid black;" required><br>
+
+                    <button type="submit" class="btn btn-danger" style="margin-top:10px;">Request</button>
+                </div>
+                <form>
+            </div>
+
         </div>
-        <form>
 
     </body>
 
