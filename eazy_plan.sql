@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 26, 2020 at 07:50 AM
+-- Generation Time: Nov 27, 2020 at 10:46 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.9
 
@@ -70,9 +70,7 @@ CREATE TABLE `allocatedresources` (
 --
 
 INSERT INTO `allocatedresources` (`workerID`, `resourceID`, `quantity`, `StaffID`, `AllocDate`) VALUES
-(2, 1, 10, 1, '2020-11-05'),
-(2, 2, 10, 1, '2020-11-05'),
-(3, 1, 2, 1, '2020-11-16');
+(2, 5, 5, 1, '2020-11-26');
 
 -- --------------------------------------------------------
 
@@ -99,8 +97,7 @@ CREATE TABLE `allorder` (
 
 INSERT INTO `allorder` (`orderID`, `name`, `description`, `quantity`, `orderDate`, `completionDate`, `status`, `totalEstimatedAmt`, `advanceAmt`, `amtLeft`) VALUES
 (1, 'APS Computer', '100 computers to be delivered to APS Techs, order accepted on 5-11-2020.', 100, '2020-11-05', '2020-11-25', 'Not Delivered', 3800000, 1800000, 2000000),
-(2, 'MTV Home Appliances', 'Require 350 air conditioners.', 350, '2020-11-07', '2020-11-30', 'Not Delivered', 3500000, 1000000, 2500000),
-(3, 'Fans', 'i want them nooo', 20, '2020-11-21', '2020-12-05', 'not delivered', 200000, 100000, 100000);
+(2, 'Rubco', 'Rubco company needs 700 LED tube lights', 700, '2020-11-26', '2020-12-16', 'Not Delivered', 245000, 50000, 195000);
 
 -- --------------------------------------------------------
 
@@ -119,7 +116,8 @@ CREATE TABLE `pendingorder` (
 --
 
 INSERT INTO `pendingorder` (`orderID`, `CompletedProdQTY`, `lastUpdated`) VALUES
-(1, 0, '2020-11-25');
+(1, 0, '2020-11-25'),
+(2, 7, '2020-11-26');
 
 -- --------------------------------------------------------
 
@@ -144,11 +142,12 @@ INSERT INTO `resource` (`id`, `name`, `quantity`, `unit`, `cost`) VALUES
 (2, 'screw', 879, 'pieces', 5),
 (3, 'Resistor', 800, 'Pieces', 50),
 (4, 'Glass', 10, '1*1 meter sheets', 200),
-(5, 'Bulb', 10, 'bulb', 100),
+(5, 'Bulb', 5, 'bulb', 100),
 (6, 'metal', 20, '1*1 meter sheets', 50),
 (7, 'mirror', 20, '1*1 meter sheets', 200),
 (8, 'handle', 10, '10 cm height piece', 200),
-(9, 'steel', 10, '1*1 meter sheets', 200);
+(9, 'steel', 10, '1*1 meter sheets', 200),
+(10, '12 V Transformer', 400, 'Pieces', 120);
 
 -- --------------------------------------------------------
 
@@ -171,11 +170,8 @@ CREATE TABLE `resourcerq` (
 --
 
 INSERT INTO `resourcerq` (`workerID`, `resourceID`, `rqQTY`, `dateRq`, `dateAlot`, `alot`, `ReqId`) VALUES
-(2, 2, 10, '2020-11-04 16:50:52', '2020-11-04 16:50:52', 1, 1),
-(2, 1, 2, '2016-11-19 18:30:00', '2020-11-16 16:05:14', 1, 2),
-(3, 1, 2, '2016-11-19 18:30:00', '2020-11-16 16:21:44', 1, 3),
-(2, 2, 1, '2017-11-19 18:30:00', '2020-11-17 02:39:48', 1, 4),
-(3, 2, 20, '2017-11-19 18:30:00', '2020-11-17 16:02:34', 0, 5);
+(2, 5, 5, '2020-11-26 11:11:12', '2020-11-26 11:11:12', 1, 1),
+(2, 1, 1, '2020-11-26 15:26:33', '2020-11-26 15:26:33', 0, 2);
 
 -- --------------------------------------------------------
 
@@ -196,9 +192,8 @@ CREATE TABLE `workallocation` (
 --
 
 INSERT INTO `workallocation` (`AllocID`, `WorkerID`, `OrderID`, `Quantity`, `CompleteBy`) VALUES
-(1, 2, 1, 10, '2020-11-27'),
-(2, 2, 2, 350, '2020-12-06'),
-(3, 2, 3, 20, '2020-12-05');
+(1, 2, 2, 100, '2020-12-06'),
+(2, 3, 1, 30, '2020-11-27');
 
 -- --------------------------------------------------------
 
@@ -219,8 +214,7 @@ CREATE TABLE `workerworkupdate` (
 --
 
 INSERT INTO `workerworkupdate` (`workerID`, `orderID`, `productQTY`, `updateTime`, `AllocID`) VALUES
-(2, 2, 350, '2020-11-25', 2),
-(2, 3, 20, '2020-11-25', 3);
+(2, 2, 7, '2020-11-26', 1);
 
 --
 -- Indexes for dumped tables
